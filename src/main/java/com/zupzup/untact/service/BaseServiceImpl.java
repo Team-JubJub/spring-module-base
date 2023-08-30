@@ -1,6 +1,6 @@
 package com.zupzup.untact.service;
 
-import com.rest.api.model.base.BaseEntity;
+import com.zupzup.untact.model.BaseEntity;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
