@@ -1,4 +1,4 @@
-package com.zupzup.untact.controller;
+package com.zupzup.untact.api;
 
 import com.zupzup.untact.model.BaseEntity;
 import com.zupzup.untact.service.BaseService;
