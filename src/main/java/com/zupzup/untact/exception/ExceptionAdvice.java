@@ -18,7 +18,8 @@ public class ExceptionAdvice {
         log.error("BaseException errorMessage(): {}",ex.getExceptionType().getErrMsg());
         log.error("BaseException errorCode(): {}",ex.getExceptionType().getErrCode());
 
-        return new ResponseEntity(new ExceptionRes(ex.getExceptionType().getErrCode()), ex.getExceptionType().getHttpStatus());
+        return new ResponseEntity(new ExceptionRes(ex.getExceptionType().getErrCode(), ex.getExceptionType().getErrMsg()),
+                ex.getExceptionType().getHttpStatus());
     }
 
     @ExceptionHandler(Exception.class)
@@ -33,5 +34,6 @@ public class ExceptionAdvice {
     static class ExceptionRes {
 
         private Integer errCode;
+        private String errMsg;
     }
 }
