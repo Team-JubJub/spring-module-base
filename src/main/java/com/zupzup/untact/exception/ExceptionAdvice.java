@@ -3,7 +3,6 @@ package com.zupzup.untact.exception;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -18,16 +17,17 @@ public class ExceptionAdvice {
         log.error("BaseException errorMessage(): {}",ex.getExceptionType().getErrMsg());
         log.error("BaseException errorCode(): {}",ex.getExceptionType().getErrCode());
 
-        return new ResponseEntity(new ExceptionRes(ex.getExceptionType().getErrCode(), ex.getExceptionType().getErrMsg()),
+        return new ResponseEntity(
+                new ExceptionRes(ex.getExceptionType().getErrCode(), ex.getExceptionType().getErrMsg()),
                 ex.getExceptionType().getHttpStatus());
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity handleLoginEx(Exception ex) {
-
-        ex.printStackTrace();
-        return new ResponseEntity(HttpStatus.OK);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity handleLoginEx(Exception ex) {
+//
+//        ex.printStackTrace();
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
 
     @Data
     @AllArgsConstructor
