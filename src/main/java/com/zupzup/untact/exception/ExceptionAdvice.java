@@ -15,11 +15,10 @@ public class ExceptionAdvice {
     public ResponseEntity handleBaseException(BaseException ex) {
 
         log.error("BaseException errorMessage(): {}",ex.getExceptionType().getErrMsg());
-        log.error("BaseException errorCode(): {}",ex.getExceptionType().getErrCode());
+//        log.error("BaseException errorCode(): {}",ex.getExceptionType().getErrCode());
 
-        return new ResponseEntity(
-                new ExceptionRes(ex.getExceptionType().getErrCode(), ex.getExceptionType().getErrMsg()),
-                ex.getExceptionType().getHttpStatus());
+        // ResponseEntity의 본문으로 직접 문자열 전달
+        return new ResponseEntity<>(ex.getExceptionType().getErrMsg(), ex.getExceptionType().getHttpStatus());
     }
 
 //    @ExceptionHandler(Exception.class)
@@ -28,12 +27,4 @@ public class ExceptionAdvice {
 //        ex.printStackTrace();
 //        return new ResponseEntity(HttpStatus.OK);
 //    }
-
-    @Data
-    @AllArgsConstructor
-    static class ExceptionRes {
-
-        private Integer errCode;
-        private String errMsg;
-    }
 }
