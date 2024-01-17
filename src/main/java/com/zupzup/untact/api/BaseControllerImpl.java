@@ -20,60 +20,40 @@ public class BaseControllerImpl<E extends BaseEntity, Rq, Rs, R extends JpaRepos
     @Override
     @PostMapping
     public ResponseEntity<Rs> save(Rq request) {
-        try {
-            Rs rs = baseService.save(request);
-            return new ResponseEntity<>(rs, HttpStatus.CREATED);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        Rs rs = baseService.save(request);
+        return new ResponseEntity<>(rs, HttpStatus.CREATED);
     }
 
     @Override
     @GetMapping
     public ResponseEntity<Object> findAll() {
-        try {
-            List<Rs> rsList = baseService.findAll();
-            return new ResponseEntity<>(rsList, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        List<Rs> rsList = baseService.findAll();
+        return new ResponseEntity<>(rsList, HttpStatus.OK);
     }
 
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<Rs> find(@PathVariable Long id) {
-        try {
-            Rs res = baseService.find(id);
-            return new ResponseEntity<>(res, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        Rs res = baseService.find(id);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @Override
     @PatchMapping("/{id}")
     public ResponseEntity<Rs> update(@PathVariable Long id, @RequestBody Rq request) {
-        try {
-            Rs rs = baseService.update(id, request);
-            return new ResponseEntity<>(rs, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        Rs rs = baseService.update(id, request);
+        return new ResponseEntity<>(rs, HttpStatus.OK);
     }
 
     @Override
     @PatchMapping("/delete/{id}")
     public ResponseEntity<Long> delete(@PathVariable Long id) {
-        try {
-            Long rs = baseService.delete(id);
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        Long rs = baseService.delete(id);
+        return null;
     }
 }

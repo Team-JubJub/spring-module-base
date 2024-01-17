@@ -19,24 +19,21 @@ public class BaseServiceImpl<E extends BaseEntity, Rq, Rs, R extends JpaReposito
     ModelMapper modelMapper;
 
     @Override
-    public List<Rs> findAll() throws Exception {
-        try {
-            List<E> eList = repository.findAll();
-            List<Rs> RsList = new ArrayList<>();
+    public List<Rs> findAll() {
 
-            for(E e : eList) {
-                Rs rs = modelMapper.map(e, getResponseType());
-                RsList.add(rs);
-            }
+        List<E> eList = repository.findAll();
+        List<Rs> RsList = new ArrayList<>();
 
-            return RsList;
-        } catch (Exception e) {
-            throw e;
+        for(E e : eList) {
+            Rs rs = modelMapper.map(e, getResponseType());
+            RsList.add(rs);
         }
+
+        return RsList;
     }
 
     @Override
-    public Rs find(Long id) throws Exception {
+    public Rs find(Long id) {
 
         E e = repository.findById(id).orElseThrow(() -> new RuntimeException("찾을 수 없는 사용자입니다."));
 
@@ -45,27 +42,24 @@ public class BaseServiceImpl<E extends BaseEntity, Rq, Rs, R extends JpaReposito
 
     @Override
     @Transactional
-    public Rs save(Rq rq) throws Exception {
-        try {
-            E e = modelMapper.map(rq, getEntityType());
-            repository.save(e);
+    public Rs save(Rq rq) {
 
-            return modelMapper.map(e, getResponseType());
-        } catch (Exception e) {
-            throw e;
-        }
+        E e = modelMapper.map(rq, getEntityType());
+        repository.save(e);
+
+        return modelMapper.map(e, getResponseType());
     }
 
     @Override
     @Transactional
-    public Rs update(Long id, Rq rq) throws Exception {
+    public Rs update(Long id, Rq rq) {
         // 각각의 서비스에서 implement 해서 구현
         return null;
     }
 
     @Override
     @Transactional
-    public Long delete(Long id) throws Exception {
+    public Long delete(Long id) {
         E e = repository.findById(id).get();
         e.setDeleted(true);
         return id;

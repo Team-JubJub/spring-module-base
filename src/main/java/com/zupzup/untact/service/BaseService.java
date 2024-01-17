@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface BaseService<E extends BaseEntity, Rq, Rs, R extends JpaRepository<E, Long>> {
 
-    List<Rs> findAll() throws Exception; // 전체 찾기
-    Rs find(Long id) throws Exception; // 단건 찾기
-    Rs save(Rq rq) throws Exception; // 저장
-    Rs update(Long id, Rq rq) throws Exception; // 업데이트
-    Long delete(Long id) throws Exception; // 삭제
+    List<Rs> findAll(); // 전체 찾기
+    Rs find(Long id); // 단건 찾기
+    Rs save(Rq rq); // 저장
+    Rs update(Long id, Rq rq); // 업데이트
+    Long delete(Long id); // 삭제
 }
