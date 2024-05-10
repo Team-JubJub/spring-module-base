@@ -23,7 +23,7 @@ public abstract class BaseEntity {
     private boolean isDeleted = Boolean.FALSE;
 
     @Column(updatable = false)
-    private String created_at;
+    private String createdAt;
 
 //    @LastModifiedDate
 //    private LocalDateTime updated_at;
